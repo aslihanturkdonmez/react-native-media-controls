@@ -30,6 +30,10 @@ export type Props = {
   showOnStart?: boolean;
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
+  playButtonContainer?: ViewStyle;
+  childrenBeforeControls?: React.ReactNode;
+  childrenAfterControls?: React.ReactNode;
+  controlContainer?:ViewStyle,
   customFullScreenStyle?:ViewStyle,
 };
 
@@ -50,6 +54,10 @@ const MediaControls = (props: Props) => {
     showOnStart = true,
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
+    playButtonContainer,
+    childrenBeforeControls,
+    childrenAfterControls,
+    controlContainer,
     customFullScreenStyle,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
@@ -154,13 +162,18 @@ const MediaControls = (props: Props) => {
             >
               {children}
             </View>
-            <Controls
-              onPause={onPause}
-              onReplay={onReplay}
-              isLoading={isLoading}
-              mainColor={mainColor}
-              playerState={playerState}
-            />
+            <View style={controlContainer}> 
+              {childrenBeforeControls}
+              <Controls
+                onPause={onPause}
+                onReplay={onReplay}
+                isLoading={isLoading}
+                mainColor={mainColor}
+                playerState={playerState}
+                playButtonContainer={playButtonContainer}
+              />
+              {childrenAfterControls}
+            </View>
             <Slider
               progress={progress}
               duration={duration}
