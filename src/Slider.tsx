@@ -24,6 +24,8 @@ type Props = Pick<
 > & {
   onPause: () => void;
   customSliderStyle?: CustomSliderStyle;
+  customFullScreenStyle?: ViewStyle;
+
 };
 
 const fullScreenImage = require("./assets/ic_fullscreen.png");
@@ -36,6 +38,7 @@ const Slider = (props: Props) => {
     onFullScreen,
     onPause,
     progress,
+    customFullScreenStyle,
   } = props;
 
   const containerStyle = customSliderStyle?.containerStyle || {};
@@ -88,7 +91,7 @@ const Slider = (props: Props) => {
       </View>
       {Boolean(onFullScreen) && (
         <TouchableOpacity
-          style={styles.fullScreenContainer}
+          style={[styles.fullScreenContainer, customFullScreenStyle]}
           onPress={onFullScreen}
         >
           <Image source={fullScreenImage} />

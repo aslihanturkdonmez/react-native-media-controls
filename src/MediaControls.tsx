@@ -30,6 +30,7 @@ export type Props = {
   showOnStart?: boolean;
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
+  customFullScreenStyle?:ViewStyle,
 };
 
 const MediaControls = (props: Props) => {
@@ -49,6 +50,7 @@ const MediaControls = (props: Props) => {
     showOnStart = true,
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
+    customFullScreenStyle,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -169,6 +171,7 @@ const MediaControls = (props: Props) => {
               onSeeking={onSeeking}
               onPause={onPause}
               customSliderStyle={sliderStyle}
+              customFullScreenStyle={customFullScreenStyle}
             />
           </View>
         )}
